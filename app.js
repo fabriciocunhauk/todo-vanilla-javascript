@@ -20,7 +20,7 @@ function addTodo(event) {
 
     //Create LI
     const newTodo = document.createElement('li');
-    newTodo.innerHTML = todoInput.value;
+    newTodo.innerText = todoInput.value;
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
 
@@ -48,11 +48,12 @@ function deleteCheck(event) {
     if (item.classList[0] === 'trash-btn') {
         const todo = item.parentElement;
         todo.classList.add("fall");
-        todo.addEventListener('transitioned', function () {
+        todo.addEventListener('transitionend', function () {
             todo.remove();
         })
     }
 
+    //CHECK MARK
     if (item.classList[0] === 'complete-btn') {
         const todo = item.parentElement;
         todo.classList.toggle('completed');
@@ -61,25 +62,20 @@ function deleteCheck(event) {
 
 function filterTodo(event) {
     const todos = todoList.childNodes;
-    todos.forEach(function (todo) {
+    todos.forEach(todo => {
+        console.log(todo.classList);
         switch (event.target.value) {
             case "all":
-                todo.style.display = "flex";
+
                 break;
             case "completed":
-                if (todo.classList.contains("completed")) {
-                    todo.style.display = "flex";
-                } else {
-                    todo.style.display = "none";
-                }
+                alert("hi")
                 break;
+
             case "uncompleted":
-                if (!todo.classList.contains("completed")) {
-                    todo.style.display = "flex";
-                } else {
-                    todo.style.display = "none";
-                }
+
                 break;
         }
-    });
+    })
+
 }
