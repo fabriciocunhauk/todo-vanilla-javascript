@@ -54,28 +54,35 @@ function deleteCheck(event) {
     }
 
     //CHECK MARK
-    if (item.classList[0] === 'complete-btn') {
+    if (item.classList[0] === "complete-btn") {
         const todo = item.parentElement;
-        todo.classList.toggle('completed');
+        todo.classList.toggle("completed");
     }
 }
 
 function filterTodo(event) {
     const todos = todoList.childNodes;
+
     todos.forEach(todo => {
-        console.log(todo.classList);
         switch (event.target.value) {
             case "all":
-
+                todo.style.display = "flex";
                 break;
             case "completed":
-                alert("hi")
+                if (todo.classList.contains("completed")) {
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
                 break;
-
             case "uncompleted":
-
+                if (!todo.classList.contains("completed")) {
+                    todo.classList.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
                 break;
         }
-    })
+    });
 
 }
